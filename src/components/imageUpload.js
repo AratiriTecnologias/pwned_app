@@ -4,14 +4,13 @@ import {
     Text,
     TextInput,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Button
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-crop-picker';
 
 import imageUploadStyle from '../styles/imageUploadStyle';
-
-
 
 
 
@@ -41,48 +40,40 @@ module.exports = React.createClass({
     }).catch(e => alert(e));
   },
 
-   pickSingleBase64(cropit) {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: cropit,
-      includeBase64: true
-    }).then(image => {
-      console.log(image);
-      this.setState({
-        image: {uri: `data:${image.mime};base64,`+ image.data, width: image.width, height: image.height},
-        images: null
-      });
-    }).catch(e => alert(e));
+  test(){
+    alert('Abrir Galeria');
   },
 
-    submit(){
-        
+    async submit(){
+        alert('Se ha enviando los Datos');
         let base64 = this.state.image.uri;
         let image = {
             file: base64
         }
-
-        fetch('https://api.pwned-2017.ml/upload', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-                body: JSON.stringify(image)
-        }).then(res => console.log(res.json()))
-          .then(data => console.log(data));
+        try {
+            let response = await fetch('https://api.pwned-2017.ml/upload', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                    body: JSON.stringify(image)
+            })
+            let responseJson = await response.json()
+           console.log(responseJson)
+        } catch(error) {
+            console.log(error)
+        }
     },
 
-
     render(){
-
 
         return(
             <View style={imageUploadStyle.container}>
                 
                     <View>
                         <Text style={imageUploadStyle.titulo}>Titulo</Text>
+                        <TextInput style={imageUploadStyle.textInput}></TextInput>
                     </View>
                     
                     <View>
@@ -90,30 +81,47 @@ module.exports = React.createClass({
                     </View>
 
                 
-                    <TextInput style={imageUploadStyle.textInput}
-                                multiline={true}
-                                numberOfLines={4}
-                    >
+                    <TextInput style={imageUploadStyle.textInput} multiline={true} numberOfLines={4}>
                     </TextInput>
                 
-                  <TouchableOpacity onPress={() => this.pickSingleWithCamera(false)} >
-                    <Text >Select Single With Camera</Text>
-                </TouchableOpacity>
+                  
+                    <View style={imageUploadStyle.buttonTakePic}>
+                        
+                        <Button
+                            onPress={() => this.pickSingleWithCamera(false)}
+                            title="Foto Camara"
+                            color="#1a237e"
+                        ></Button>
+                      
+                    </View>
 
-            <TouchableOpacity onPress={() => this.pickSingleBase64(false)}>
-                <Text >Select Single Returning Base64</Text>
-            </TouchableOpacity>
+                    <View style={imageUploadStyle.buttonTakePic}>
                     
-                 <View >   
-                     <Image style={{width: 50, height: 50}} source={this.state.image}
-                />
-                </View>
+                        <Button 
+                                onPress={() => this.test()}
+                                title="Foto Galeria"
+                                color="#1a237e"
+                        ></Button>
 
-             
-                <TouchableOpacity onPress={() => this.submit()}>
-                    <Text>Subir</Text>
-                </TouchableOpacity>
+                    </View>
 
+                    
+                     <View style={imageUploadStyle.buttonTakePic2}>
+                    
+                        <Button 
+                                onPress={() => this.submit()}
+                                title="Enviar"
+                                color="#1a237e"
+                        ></Button>
+
+                    </View>
+
+                     
+
+                    <View>   
+                        <Image style={{width: 70, height: 70, borderRadius: 5}} source={this.state.image}
+                        />
+                    </View>
                
              </View>   
             )

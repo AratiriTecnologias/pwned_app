@@ -21,19 +21,20 @@ module.exports = StyleSheet.create({
     titulo:{
         marginBottom: 10,
         fontWeight: 'bold',
+        textAlign: 'center'
+
         //color: navy,
         //fontSize: 16,
+     
      
         
     },
 
     descripcion:{
-        marginBottom: 20,
-        //fontSize: 28,
-        //textAlign: 'center',
-        color: '#656656'
-
-        
+        fontWeight: 'bold',
+        marginTop: 17,
+        marginBottom: 15,
+        color: '#656656'        
     },
 
     textInput:{
@@ -50,7 +51,30 @@ module.exports = StyleSheet.create({
     upload:{
         marginBottom: 200,
         marginTop: 20,
+    },
+
+     buttonTakePic:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+     },
+
+     buttonTakePic2:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginBottom: 50,
+        
     }
+    //   buttonSubmitPic:{
+
+    //     marginBottom: 160,
+    //     paddingRight: 150,  
+    //     marginTop: 10
+        
+    // }
+
 
 
 })
+
