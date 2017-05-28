@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
     View,
     Text,
@@ -13,12 +13,11 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 import imageUploadStyle from '../styles/imageUploadStyle';
 
-
-
-module.exports = React.createClass({
-    getInitialState(){
-        return({
-            uploadImg: null,
+class ImageUpload extends Component{
+  constructor(props){
+      super(props);
+      this.state ={
+           uploadImg: null,
             image: null,
             base64: null,
             images: null,
@@ -36,10 +35,8 @@ module.exports = React.createClass({
                         status: "open"
                      }
 
-        })
-    },
-
-
+        }
+    }
 
   pickSingleWithCamera(cropping) {
     ImagePicker.openCamera({
@@ -54,11 +51,11 @@ module.exports = React.createClass({
         images: null
       });
     }).catch(e => alert(e));
-  },
+  }
 
   test(){
     alert('Abrir Galeria');
-  },
+  }
 
     async submit(){
         alert('Se ha enviando los Datos');
@@ -99,7 +96,11 @@ module.exports = React.createClass({
         } catch(error) {
             console.log(error)
         }
-    },
+    }
+
+    static navigationOptions = ({ navigation }) => ({
+        title: `Crear problema`,
+    });
 
     render(){
 
@@ -164,4 +165,8 @@ module.exports = React.createClass({
              </View>
             )
     }
-})
+
+} 
+export default ImageUpload;
+
+

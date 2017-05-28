@@ -12,15 +12,19 @@ import {
   View
 } from 'react-native';
 
-import ImageUpload from './src/components/imageUpload';
+import { StackNavigator } from 'react-navigation';
 
-export default class pwned extends Component {
-  render() {
-    return (
-        <ImageUpload />
-    );
-  }
-}
+import ImageUpload from './src/components/imageUpload';
+import Login from './src/components/login';
+import Activity from './src/components/activity';
+
+
+const pwned = StackNavigator({
+  Login: {screen: Login},
+  ImageUpload: {screen: ImageUpload},
+  Activity: {screen: Activity}
+
+})
 
 
 AppRegistry.registerComponent('pwned', () => pwned);
