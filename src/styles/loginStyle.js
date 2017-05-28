@@ -35,6 +35,10 @@ module.exports = StyleSheet.create({
 
     button:{
         marginTop: 10
+    },
+
+    feedback:{
+        textAlign: 'center'
     }
 
 })
