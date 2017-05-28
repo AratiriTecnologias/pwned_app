@@ -24,27 +24,6 @@ class Login extends Component{
       }
    }
   
-   componentDidMount() {
-      firebaseApp.auth().onAuthStateChanged((user) => {
-          if(user){
-              console.log('user =>', user);
-              this.props.navigation.navigate('Activity');
-        
-          }
-      })  
-    }
-
-
-    signIn(){
-        let {email, password} = this.state;
-
-        firebaseApp.auth().signInWithEmailAndPassword(email, password)
-            .catch(error =>{
-                console.log('error: ',error.message);
-                this.setState({result: error.message});
-            })
-    }
-
 
 
 
@@ -53,7 +32,7 @@ class Login extends Component{
     });
 
     render(){
-        const { navigate } = this.props.navigation;
+       
         return(
             <View style={loginStyle.container}>
                 <Text style={loginStyle.feedback}>{this.state.result}</Text>
@@ -72,7 +51,7 @@ class Login extends Component{
 
                 <View style={loginStyle.button}>
                 <Button 
-                    onPress={()=> this.signIn()}
+                    onPress={()=> this.props.navigation.navigate('Activity')}
                     title="Entrar"
                     color="#1a237e"
                     ></Button>

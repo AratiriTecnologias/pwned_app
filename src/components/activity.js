@@ -11,14 +11,9 @@ import { firebaseApp } from './auth/config';
 
 class Activity extends Component{
 
-    signOut(){
-            firebaseApp.auth.signOut().then(() => {
-                  console.log('Adentro de signOut');
-                  this.props.navigation.navigate('Login');
-            }, (error) =>{
-                    console.log(error);
-            })
-    }
+    static navigationOptions = ({ navigation }) => ({
+        title: `Home`,
+    });
 
 
     render(){ 
@@ -26,16 +21,13 @@ class Activity extends Component{
             return(
                 <View style={activityStyle.container}>
 
-                    <View style={activityStyle.linkcontent}>
-                        <TouchableOpacity onPress={()=> this.signOut()}>
-                            <Text style={activityStyle.link}>
-                                Sign out
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <TouchableOpacity style={activityStyle.buttonNewQuestion}>
+                    <TouchableOpacity style={activityStyle.buttonNewQuestion} onPress={()=> this.props.navigation.navigate('ImageUpload')}>
                         <Text style={activityStyle.TextQuestion}>Nuevo</Text>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity style={activityStyle.buttonChat} >
+                        <Text style={activityStyle.TextRecent}>     Chat</Text>
                     </TouchableOpacity>
 
 

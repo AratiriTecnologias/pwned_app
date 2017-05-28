@@ -22,12 +22,24 @@ module.exports = StyleSheet.create({
 
     },
 
+     buttonChat:{
+        borderWidth: 2,
+        borderColor: '#439184',
+        padding: 10,
+        width: 98,
+        marginBottom: 25,
+
+    },
+    
+
 
     TextQuestion: {
         fontSize: 18,
         color: navy,
         left: 10
     },
+
+    
 
     buttonRecent:{
         borderWidth: 2,
