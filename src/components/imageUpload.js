@@ -76,7 +76,6 @@ class ImageUpload extends Component{
              upload_r = await upload_r.json()
              let labels = []
              Object.keys(upload_r.firebase_pub_r.published.Labels).forEach((item)=> {
-                console.log(item)
                 labels.push(item)
              })
              Alert.alert(labels.join(", "))
@@ -99,7 +98,7 @@ class ImageUpload extends Component{
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: `Crear problema`,
+        title: `Crear publicación`,
     });
 
     render(){
@@ -128,18 +127,8 @@ class ImageUpload extends Component{
 
                         <Button
                             onPress={() => this.pickSingleWithCamera(false)}
-                            title="Foto Camara"
+                            title="Camara"
                             color="#1a237e"
-                        ></Button>
-
-                    </View>
-
-                    <View style={imageUploadStyle.buttonTakePic}>
-
-                        <Button
-                                onPress={() => this.test()}
-                                title="Foto Galeria"
-                                color="#1a237e"
                         ></Button>
 
                     </View>
@@ -149,7 +138,7 @@ class ImageUpload extends Component{
 
                         <Button
                                 onPress={() => this.submit()}
-                                title="Enviar"
+                                title="Enviar publicación"
                                 color="#1a237e"
                         ></Button>
 
@@ -166,7 +155,5 @@ class ImageUpload extends Component{
             )
     }
 
-} 
+}
 export default ImageUpload;
-
-
